@@ -2,31 +2,25 @@
 
 namespace RestAPI.Data.Models
 {
-	public class Produit
-	{
-		[Key]
-		public int Id { get; set; }
-		public int CodeMonture { get; set; }
-		public int RéfFms { get; set; }
-		public int PrixAchatHT { get; set; }
-		public int Taille { get; set; }
-		public int Référance{ get; set; }
-		[MaxLength(50)]
-		public string Fournisseur { get; set; }
-		[MaxLength(50)]
-		public string Marque { get; set; }
-		public int PrixVenteHT { get; set; }
-		public int Marge { get; set; }
-		public int PrixVenteTTC { get; set; }
-		[MaxLength(50)]
-		public string Matiere { get; set; }
-		public int Code { get; set; }
-		public int TVA { get; set; }
-		public int PrixAchatNetTTC { get; set; }
-		[MaxLength(50)]
-		public string Forme { get; set; }
-
-	}
+    public class Produit
+    {
+        public int Id { get; set; }
+        public string CodeMonture { get; set; }
+        public string RefFms { get; set; }  // Assurez-vous que c'est bien 'RefFms' et non 'Référence'
+        public float PrixAchatHT { get; set; }
+        public string Taille { get; set; }
+        public string Referance { get; set; } // Assurez-vous que cette propriété existe
+        public string Fournisseur { get; set; }
+        public string Marque { get; set; }
+        public float PrixVenteHT { get; set; }
+        public float Marge { get; set; }
+        public float PrixVenteTTC { get; set; }
+        public string Matiere { get; set; }
+        public string Code { get; set; }
+        public float TVA { get; set; }
+        public float PrixAchatNetTTC { get; set; }
+        public string Forme { get; set; }
+    }
 }
 
-	
+

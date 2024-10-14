@@ -21,18 +21,33 @@ namespace RestAPI.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GetProduits()
 		{
-			var prod = await _db.Produits.ToListAsync();
-			return Ok(prod);
-		}
+			try
+			{
+				var prod = await _db.Produits.ToListAsync();
+				return Ok(prod);
+			}
+            catch (InvalidCastException ex)
+            {
+                // Gérer l'erreur, par exemple en retournant un message clair
+                return BadRequest("Erreur de conversion : " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Gérer les autres exceptions
+                return StatusCode(500, "Erreur interne du serveur : " + ex.Message);
+            }
+
+
+        }
 		[HttpPost]
 		public async Task<IActionResult> AddProduit([FromBody] Produit produit)
 		{
 			Produit p = new() {
 				CodeMonture = produit.CodeMonture,
-				RéfFms = produit.RéfFms,
+				RefFms = produit.RefFms,
 				PrixAchatHT = produit.PrixAchatHT,
 				Taille = produit.Taille,
-				Référance = produit.Référance,
+				Referance = produit.Referance,
 				Fournisseur = produit.Fournisseur,
 				Marque = produit.Marque,
 				PrixVenteHT = produit.PrixVenteHT,
@@ -59,10 +74,10 @@ namespace RestAPI.Controllers
 
 			}
 			p.CodeMonture = produit.CodeMonture;
-			p.RéfFms = produit.RéfFms;
+			p.RefFms = produit.RefFms;
 			p.PrixAchatHT = produit.PrixAchatHT;
 			p.Taille = produit.Taille;
-			p.Référance = produit.Référance;
+			p.Referance = produit.Referance;
 			p.Fournisseur = produit.Fournisseur;
 			p.Marque = produit.Marque;
 			p.PrixVenteHT = produit.PrixVenteHT;
